@@ -1,0 +1,24 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/myapp:z
+      - gems:/usr/local/bundle
+    env_file:
+      - docker/env.web
+    depends_on:
+      - db
+  db:
+    platform: linux/amd64
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: salt_edge
+volumes:
+  db_data: {}
+  gems: {}
