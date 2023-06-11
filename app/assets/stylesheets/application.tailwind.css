@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+
+@layer components {
+  .flash.notice {
+    @apply text-blue-800 bg-blue-50;
+  }
+
+  .flash.alert {
+    @apply text-red-800 bg-red-50;
+  }
+
+  .flash.timedout {
+    @apply text-yellow-800 bg-yellow-50;
+  }
+
+  .flash.special {
+    @apply bg-gray-50;
+  }
+
+  div.flash.special > div.text-sm {
+    @apply text-gray-800;
+  }
+
+  button.flash.notice {
+    @apply text-blue-500 bg-blue-50 focus:ring-blue-400 hover:bg-blue-200;
+  }
+
+  button.flash.alert {
+    @apply bg-red-50 text-red-500 focus:ring-red-400 hover:bg-red-200;
+  }
+
+  button.flash.timedout {
+    @apply bg-yellow-50 text-yellow-500 focus:ring-yellow-400 hover:bg-yellow-200;
+  }
+
+  button.flash.special {
+    @apply bg-gray-50 text-gray-500 focus:ring-gray-400 hover:bg-gray-200;
+  }
+}

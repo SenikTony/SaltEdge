@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super { |resource| CustomerBuilder.build(user: resource) }
+    super { |resource| CustomerBuilder.build(user: resource) if resource.persisted? }
   end
 
   # GET /resource/edit
