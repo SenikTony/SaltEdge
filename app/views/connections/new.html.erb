@@ -1,0 +1,12 @@
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Link for create new connection via Gateway</h5>
+    <p class="mb-3 font-normal text-gray-700">The link expires after 60 sec.</p>
+
+    <div class="flex justify-center space-x-16">
+      <%= link_to "<- Back to connections", root_path, class: "inline-flex items-center px-3 py-2 text-sm font-small text-center text-white bg-gray-500 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300" %>
+
+      <% if @connection.present? %>
+        <%= link_to "Create ->", @connection, class: "inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-600 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300"%>
+      <% end %>
+    </div>
+</div>

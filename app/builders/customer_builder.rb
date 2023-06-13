@@ -12,7 +12,8 @@ class CustomerBuilder
 
   def valid?
     @errors.clear
-    @errors << "User must be defined" if user.blank?
+    @errors << "User must be defined" if user.blank? || !user.persisted?
+    @erorrs << "User already have gateway credentials" if user.gateway_user?
 
     @errors.size.zero?
   end
