@@ -1,8 +1,6 @@
 module Gateway
   class Base
-    def self.call(**args)
-      new(**args).call
-    end
+    include Callable
 
     def call
       raise NotImplementedError

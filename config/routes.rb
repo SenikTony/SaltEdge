@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   root "connections#index"
 
   resource :user_profiles, only: [:show, :update]
-  resource :connections, only: [:new, :create, :destroy, :update]
+  resource :connections, only: [:new, :destroy, :update]
 end

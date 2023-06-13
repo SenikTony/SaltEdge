@@ -43,6 +43,9 @@
             </td>
             <td class="px-6 py-4">
               <%# Buttons for refresh, reconnect and remove connection %>
+              <%= button_to "Ref", connections_path(id: connection.id, kind: "refresh"), method: :patch %>
+              <%= button_to "Rec", connections_path(id: connection.id, kind: "reconnect"), method: :patch %>
+              <%= link_to "Rem", "#" %>
             </td>
           </tr>
         <% end %>

@@ -28,7 +28,7 @@ class CustomerBuilder
     update_user_gateway_data(gateway_data)
   rescue StandardError => e
     @errors << e.message
-    Gateway::Customers::RemoveService.call(id: gateway_data[:data][:id])
+    Gateway::Customers::RemoveService.call(id: gateway_data[:data][:id]) if gateway_data&.key?(:data)
     return false
   end
 

@@ -46,6 +46,7 @@ class ConnectionsListBuilder
 
       connection.status = gateway_connection[:status]
       connection.balance_updated_at = gateway_connection[:updated_at]
+      connection.last_consent_id = gateway_connection[:last_consent_id]
       connection.save
 
     rescue StandardError => _e
