@@ -21,17 +21,18 @@ class ConnectionsController < ApplicationController
   end
 
   def update
-    res = ConnectionStateUpdateService.call(connection: @connection, kind: params[:kind], callback_url: root_url)
+    # res = ConnectionStateUpdateService.call(connection: @connection, kind: params[:kind], callback_url: root_url)
 
-    if res.is_a?(String)
-      redirect_to res, allow_other_host: true
-    elsif res
-      flash[:notice] = "Connection was refreshed"
-      redirect_to root_path
-    else
-      flash[:alert] = "Can't refresh connection. Please check consent or posible refresh date."
-      redirect_to root_path
-    end
+    # if res.is_a?(String)
+    #   redirect_to res, allow_other_host: true
+    # elsif res
+    #   flash[:notice] = "Connection was refreshed"
+    #   redirect_to root_path
+    # else
+    #   flash[:alert] = "Can't refresh connection. Please check consent or posible refresh date."
+    #   redirect_to root_path
+    # end
+    head :ok
   end
 
   def destory
