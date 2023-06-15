@@ -4,4 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "connections#index"
+
+  resource :user_profiles, only: [:show, :update]
+  resource :connections, only: [:new, :destroy, :update]
 end

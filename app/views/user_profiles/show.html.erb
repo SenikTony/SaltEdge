@@ -1,0 +1,49 @@
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500">
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
+      Gateway customer information
+      <p class="mt-1 text-sm font-normal text-gray-500">
+        A Customer represents a single end-user of the Account Information API. The customer uses the API to create Connections, i.e. bank connections, that are further used to aggregate the customer’s financial data.
+      </p>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          #ID
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Identifier
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Secret
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Blocked date
+        </th>
+        <th scope="col" class="px-6 py-3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b">
+        <td class="px-6 py-4">
+          <%= current_user.gateway_id || "-" %>
+        </td>
+        <td class="px-6 py-4">
+          <%= current_user.gateway_identifier || "-" %>
+        </td>
+        <td class="px-6 py-4">
+          <%= current_user.gateway_secret&.truncate(17) || "-" %>
+        </td>
+        <td class="px-6 py-4">
+          <%= current_user.gateway_blocked_at || "-" %>
+        </td>
+        <td class="px-6 py-4">
+          <% if !current_user.gateway_user? %>
+            <%= button_to "Create", user_profiles_path, class: "font-medium text-blue-600 hover:underline", method: :patch %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

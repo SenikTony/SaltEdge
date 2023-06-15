@@ -12,7 +12,8 @@ class CustomerBuilder
 
   def valid?
     @errors.clear
-    @errors << "User must be defined" if user.blank?
+    @errors << "User must be defined" if user.blank? || !user.persisted?
+    @erorrs << "User already have gateway credentials" if user.gateway_user?
 
     @errors.size.zero?
   end
@@ -27,7 +28,7 @@ class CustomerBuilder
     update_user_gateway_data(gateway_data)
   rescue StandardError => e
     @errors << e.message
-    Gateway::Customers::RemoveService.call(id: gateway_data[:data][:id])
+    Gateway::Customers::RemoveService.call(id: gateway_data[:data][:id]) if gateway_data&.key?(:data)
     return false
   end
 
