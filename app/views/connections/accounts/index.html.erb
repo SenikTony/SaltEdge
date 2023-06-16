@@ -1,0 +1,58 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500">
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
+      Connection accounts
+      <p class="mt-1 text-sm font-normal text-gray-500">
+        An Account represents a source of a specific currency to a connection.
+      </p>
+    </caption>
+    <% if @accounts.present? %>
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            #ID
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Name
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Nature
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Transactions
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Balance
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Currency
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @accounts.each do |account| %>
+          <tr class="bg-white border-b">
+            <td class="px-6 py-4">
+              <%= account.account_id %>
+            </td>
+            <td class="px-6 py-4">
+              <%= account.name %>
+            </td>
+            <td class="px-6 py-4">
+              <%= account.nature %>
+            </td>
+            <td class="px-6 py-4">
+              <%#= account.transactions %>
+            </td>
+            <td class="px-6 py-4">
+              <%= account.balance %>
+            </td>
+            <td class="px-6 py-4">
+              <%= account.currency_code %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+</div>

@@ -33,7 +33,7 @@ class ConnectionsListBuilder
     @errors << e.message
     return false
   ensure
-    @connections = user.reload.connections
+    @connections = user.connections.reload.includes(:accounts)
   end
 
   private
@@ -48,9 +48,8 @@ class ConnectionsListBuilder
       connection.balance_updated_at = gateway_connection[:updated_at]
       connection.last_consent_id = gateway_connection[:last_consent_id]
       connection.save
-
     rescue StandardError => _e
-      @errors << "Can't craete/update connection #{gateway_connection[:id]}"
+      @errors << "Can't create/update connection #{gateway_connection[:id]}"
     end
   end
 end
