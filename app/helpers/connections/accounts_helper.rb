@@ -1,0 +1,2 @@
+module Connections::AccountsHelper
+end

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_154227) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_185051) do
+  create_table "accounts", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "connection_id"
+    t.string "account_id"
+    t.string "name"
+    t.string "nature"
+    t.decimal "balance", precision: 12, scale: 2
+    t.string "currency_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connection_id"], name: "index_accounts_on_connection_id"
+  end
+
   create_table "connections", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.string "connection_id"
@@ -20,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_154227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "last_consent_id"
+    t.integer "accounts_count"
     t.index ["user_id"], name: "index_connections_on_user_id"
   end
 
