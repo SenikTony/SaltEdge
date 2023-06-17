@@ -25,6 +25,9 @@
             Accounts
           </th>
           <th scope="col" class="px-6 py-3">
+            Transactions
+          </th>
+          <th scope="col" class="px-6 py-3">
             Actions
           </th>
         </tr>
@@ -46,6 +49,9 @@
             </td>
             <td class="px-6 py-4 text-indigo-500 font-bold">
               <%= link_to connection.accounts.size, connection_accounts_path(connection) %>
+            </td>
+            <td class="px-6 py-4">
+              <%= connection.transactions.size %>
             </td>
             <td class="px-6 py-4 flex justify-between">
               <%= button_to connections_path(id: connection.id, kind: "refresh"), method: :patch, data: { tooltip_target: "dataRefreshTooltip" } do %>

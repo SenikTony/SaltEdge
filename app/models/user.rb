@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :connections, dependent: :destroy
+  has_many :accounts, through: :connections, dependent: :destroy
 
   def gateway_user?
     # gateway_id.present? && !gateway_user_blocked?
