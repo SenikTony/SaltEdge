@@ -11,6 +11,7 @@ services:
       - docker/env.web
     depends_on:
       - db
+      - redis
     tty: true
     stdin_open: true
   db:
@@ -21,6 +22,24 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: salt_edge
+  redis:
+    platform: linux/amd64
+    image: 'redis:6.2.12-alpine'
+    command: 'redis-server'
+    volumes:
+      - redis:/var/lib/redis/data
+  sidekiq:
+    build: .
+    command: 'bash -c "bundle && bundle exec sidekiq -C config/sidekiq.yml"'
+    volumes:
+      - .:/myapp:z
+      - gems:/usr/local/bundle
+    env_file:
+      - docker/env.web
+    depends_on:
+      - db
+      - redis
 volumes:
   db_data: {}
+  redis: {}
   gems: {}
