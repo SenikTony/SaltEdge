@@ -14,9 +14,9 @@ class ConnectionsController < ApplicationController
     new_connect_session = ConnectSessionsBuilder.new(user: current_user, callback_url: root_url)
 
     if new_connect_session.build
-      @connection = new_connect_session.connect_session_url
+      redirect_to new_connect_session.connect_session_url, allow_other_host: true
     else
-      flash.now[:alert] = new_connect_session.errors.join(" ")
+      redirect_to root_path, alert: new_connect_session.errors.join(" ")
     end
   end
 
