@@ -21,7 +21,7 @@ module Gateway
         params = ["customer_id=#{user.gateway_id}"]
         params << "from_id=#{from_id}" if from_id.present?
 
-        "#{gateway_path}/?#{params.join("&")}"
+        [gateway_path, "?#{params.join("&")}"]
       end
     end
   end

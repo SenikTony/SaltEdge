@@ -6,7 +6,7 @@ module Gateway
       end
 
       def call
-        api_response = request("DELETE", "customers/#{gateway_id}")
+        api_response = request("DELETE", ["customers", gateway_id.to_s])
         JSON.parse(api_response.body).deep_symbolize_keys
       rescue RestClient::ExceptionWithResponse => e
         JSON.parse(e.response.body).deep_symbolize_keys
