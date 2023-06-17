@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_185051) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_182223) do
   create_table "accounts", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "connection_id"
     t.string "account_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_185051) do
     t.string "currency_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "transactions_count"
     t.index ["connection_id"], name: "index_accounts_on_connection_id"
   end
 
@@ -34,6 +35,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_185051) do
     t.string "last_consent_id"
     t.integer "accounts_count"
     t.index ["user_id"], name: "index_connections_on_user_id"
+  end
+
+  create_table "transactions", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "transaction_id"
+    t.string "made_on"
+    t.string "category"
+    t.string "description"
+    t.string "currency_code"
+    t.decimal "amount", precision: 24, scale: 12
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|

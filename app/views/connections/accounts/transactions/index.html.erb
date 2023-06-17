@@ -2,55 +2,55 @@
   <table class="w-full text-sm text-left text-gray-500">
     <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
       <div class="flex items-center">
-        Connection <div class="text-sm text-gray-400 px-2">(ID <%= @connection.connection_id %>)</div> accounts
+        Account <div class="text-sm text-gray-400 px-2">(ID <%= @account.account_id %>)</div> transactions
       </div>
       <p class="mt-1 text-sm font-normal text-gray-500">
-        An Account represents a source of a specific currency to a connection.
+        A transaction represents a movement of funds.
       </p>
     </caption>
-    <% if @accounts.present? %>
+    <% if @transactions.present? %>
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
           <th scope="col" class="px-6 py-3">
             #ID
           </th>
           <th scope="col" class="px-6 py-3">
-            Name
+            Made on
           </th>
           <th scope="col" class="px-6 py-3">
-            Nature
+            Category
           </th>
           <th scope="col" class="px-6 py-3">
-            Transactions
+            Description
           </th>
           <th scope="col" class="px-6 py-3">
-            Balance
+            Status
           </th>
           <th scope="col" class="px-6 py-3">
-            Currency
+            Amount
           </th>
         </tr>
       </thead>
       <tbody>
-        <% @accounts.each do |account| %>
+        <% @transactions.each do |transaction| %>
           <tr class="bg-white border-b">
             <td class="px-6 py-4">
-              <%= account.account_id %>
+              <%= transaction.transaction_id %>
             </td>
             <td class="px-6 py-4">
-              <%= account.name %>
+              <%= transaction.made_on %>
             </td>
             <td class="px-6 py-4">
-              <%= account.nature %>
-            </td>
-            <td class="px-6 py-4 text-indigo-500 font-bold">
-              <%= link_to account.transactions.size, account_transactions_path(account) %>
+              <%= transaction.category&.humanize %>
             </td>
             <td class="px-6 py-4">
-              <%= account.balance %>
+              <%= transaction.description %>
             </td>
             <td class="px-6 py-4">
-              <%= account.currency_code %>
+              <%= transaction.status %>
+            </td>
+            <td class="px-6 py-4">
+              <%= "#{transaction.amount} #{transaction.currency_code}" %>
             </td>
           </tr>
         <% end %>

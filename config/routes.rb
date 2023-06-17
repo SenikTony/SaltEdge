@@ -7,7 +7,12 @@ Rails.application.routes.draw do
 
   resource :user_profiles, only: [:show, :update]
   resource :connections, only: [:new, :destroy, :update]
+
   resources :connections, except: [:index, :show, :new, :create, :update, :destroy] do
     resources :accounts, only: :index, controller: "connections/accounts"
+  end
+
+  resources :accounts, except: [:index, :show, :new, :create, :update, :destroy] do
+    resources :transactions, only: :index, controller: "connections/accounts/transactions"
   end
 end
